@@ -1,0 +1,29 @@
+import streamlit as st
+import pandas as pd
+import numpy as np
+import requests
+import datetime
+import plotly.graph_objs as go
+import plotly.express as px
+import locale
+import networkx as nx
+import time
+
+
+st.set_page_config(
+    page_title="Gitcoin Citizens Round",
+    page_icon="📊",
+    layout="wide",
+
+)
+
+st.title('Gitcoin Citizens Rounds')
+
+dfpp = pd.read_csv('citizens_round_passports.csv')
+df = pd.read_csv('citizens_round_votes.csv')
+
+st.write('Number of projects: ', df['project_id'].nunique())
+st.write('Number of voters: ', df['voter'].nunique())
+st.write('Total amountUSD: ', df['amountUSD'].sum())
+st.write('Number of votes: ', df['amountUSD'].count())
+st.write('Number of passports: ', dfpp['address'].nunique())
