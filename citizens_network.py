@@ -45,6 +45,8 @@ voters_color = 'red'
 line_color = '#008F11'
 
 # Maximum Block Number to include, start at Min
+# convert blockNumber to int
+df['blockNumber'] = df['blockNumber'].astype(int)
 max_block_number = st.slider('Maximum Block Number', value=df['blockNumber'].max(), max_value=df['blockNumber'].max(), min_value=df['blockNumber'].min(), step=300)
 # Minimum donation amount to include, start at 10
 min_donation = st.slider('Minimum donation amount', value=10, max_value=1000, min_value=1, step=1)
