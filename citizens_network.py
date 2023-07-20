@@ -51,10 +51,16 @@ min_donation = st.slider('Minimum donation amount', value=10, max_value=1000, mi
 df = df[df['amountUSD'] > min_donation]
 
 # Minimum passport score to include, start at 10
-min_passport_score = st.slider('Minimum Passport Score', value=10, max_value=100, min_value=1, step=1)
+min_passport_score = st.slider('Minimum Passport Score', value=15, max_value=100, min_value=1, step=1)
 
 # Filter the dataframe to include only rows with donation amounts above the threshold
 df = df[df['passport_score'] > min_passport_score]
+
+# Maximum Block Number to include, start at Min
+max_block_number = st.slider('Maximum Block Number', value=df['blockNumber'].max(), max_value=df['blockNumber'].max(), min_value=df['blockNumber'].min(), step=100)
+
+# Filter to include only rows with blockNumber below the threshold
+df = df[df['blockNumber'] < max_block_number]
 
 # Initialize a new Graph
 B = nx.Graph()
